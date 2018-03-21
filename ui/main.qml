@@ -1,10 +1,19 @@
 import QtQuick 2.3
 import QtQuick.Window 2.2
+import QtQml 2.2
+import QtQuick.Controls 1.4
+import QtGraphicalEffects 1.0
+import "qrc:/objects/"
+import "qrc:/global/"
 
 Window {
+    id: main_window
     visible: true
-    height: 1080
-    width: 1920
+    height: 480
+    width: 800
+
+    /* Declaring the components */
+    GlobalVars{id: global_vars}
 
     Rectangle {
         id: main_page
@@ -19,39 +28,33 @@ Window {
 
             anchors.left: parent.left
             
-            Rectangle {
+            SideButton {
                 id: button_one
-                height: parent.width/1.5
-                width: parent.width/1.5
-                radius: height/2
 
-                color: "black"
+                height_up: parent.width/1.5
+                width_up: height
 
                 anchors.horizontalCenter: parent.horizontalCenter
                 anchors.top: parent.top
                 anchors.topMargin: parent.height/12
             }
 
-            Rectangle {
+            SideButton {
                 id: button_two
-                height: parent.width/1.5
-                width: parent.width/1.5
-                radius: height/2
 
-                color: "black"
+                height_up: parent.width/1.5
+                width_up: height
 
                 anchors.horizontalCenter: parent.horizontalCenter
                 anchors.top: button_one.bottom
                 anchors.topMargin: button_one.height/3
             }
 
-            Rectangle {
+            SideButton {
                 id: button_three
-                height: parent.width/1.5
-                width: parent.width/1.5
-                radius: height/2
 
-                color: "black"
+                height_up: parent.width/1.5
+                width_up: height
 
                 anchors.horizontalCenter: parent.horizontalCenter
                 anchors.top: button_two.bottom
@@ -116,7 +119,7 @@ Window {
                 height: parent.height/1.4
                 width: parent.width/1.2
 
-                color: "red"
+                color: "gray"
 
                 anchors.top: top_box.bottom
                 anchors.horizontalCenter: parent.horizontalCenter
