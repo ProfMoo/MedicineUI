@@ -4,5 +4,10 @@
         <file>main.cpp</file>
         <file>objects/SideButton.qml</file>
         <file>global/GlobalVars.qml</file>
+        <file>images/calendar.png</file>
+        <file>images/home.png</file>
+        <file>images/pills.png</file>
+        <file>images/sign-out-alt.png</file>
+        <file>images/wrench.png</file>
     </qresource>
 </RCC>

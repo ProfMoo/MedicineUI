@@ -37,6 +37,8 @@ Window {
                 anchors.horizontalCenter: parent.horizontalCenter
                 anchors.top: parent.top
                 anchors.topMargin: parent.height/12
+
+                icon: "qrc:/images/home.png"
             }
 
             SideButton {
@@ -48,6 +50,8 @@ Window {
                 anchors.horizontalCenter: parent.horizontalCenter
                 anchors.top: button_one.bottom
                 anchors.topMargin: button_one.height/3
+
+                icon: "qrc:/images/calendar.png"
             }
 
             SideButton {
@@ -60,6 +64,39 @@ Window {
                 anchors.top: button_two.bottom
                 anchors.topMargin: button_two.height/3
 
+                icon: "qrc:/images/pills.png"
+            }
+        }
+
+        Rectangle {
+            id: clock
+            height: parent.height/6
+            width: side_bar.width
+            color: "#00000000"
+            //color: "red"
+
+            anchors.bottom: parent.bottom
+            anchors.horizontalCenter: side_bar.horizontalCenter
+
+            Text {
+                id: time_text
+                anchors.horizontalCenter: parent.horizontalCenter
+                anchors.top: parent.top
+                text: "2:08 PM"
+                font.pointSize: parent.width/7
+                smooth: true
+                color: "white"
+            }
+
+            Text {
+                id: date_text
+                anchors.horizontalCenter: parent.horizontalCenter
+                anchors.top: time_text.bottom
+                anchors.topMargin: parent.height/10
+                text: "Wed, Jan 3"
+                font.pointSize: parent.width/10
+                smooth: true
+                color: "white"
             }
         }
 
@@ -119,7 +156,7 @@ Window {
                 height: parent.height/1.4
                 width: parent.width/1.2
 
-                color: "gray"
+                color: "white"
 
                 anchors.top: top_box.bottom
                 anchors.horizontalCenter: parent.horizontalCenter
