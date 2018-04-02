@@ -5,25 +5,55 @@ import QtQuick.Controls 1.4
 import QtGraphicalEffects 1.0
 import "qrc:/objects/"
 import "qrc:/global/"
+import "qrc:/layers/"
 
 Window {
     id: main_window
     visible: true
-    height: 480
-    width: 800
+    height: global_vars.height_main
+    width: global_vars.width_main
 
     /* Declaring the components */
     GlobalVars{id: global_vars}
+
+    /* Making layers */
+    //Pills{id: pills_layer; x:0; y:0}
+    Pills{id: pills_layer; x:global_vars.width_main - global_vars.sidebar_width; y:0}
+    Schedule{id: schedule_layer; x:global_vars.width_main - global_vars.sidebar_width; y:0}
+
+    Component.onCompleted: {
+        main_page.state = "visible"
+        //main_page.state = "hidden"
+    }
 
     Rectangle {
         id: main_page
         anchors.fill: parent
         //color: "white"
 
+        states: [
+            State {
+                name: "visible";
+                PropertyChanges {
+                    target: today_page;
+                    visible: true;
+                    opacity: 1
+                }
+            },
+            State {
+                name: "hidden";
+                PropertyChanges {
+                    target: today_page;
+                    visible: false;
+                    opacity: 0
+                }
+            }
+        ]
+
         Rectangle {
             id: side_bar
             height: parent.height
-            width: parent.width/6
+            width: global_vars.sidebar_width
             color: "#252861"
 
             anchors.left: parent.left
@@ -38,6 +68,12 @@ Window {
                 anchors.top: parent.top
                 anchors.topMargin: parent.height/12
 
+                onClicked: {
+                    main_page.state = "visible"
+                    pills_layer.state = "hidden"
+                    schedule_layer.state = "hidden"
+                }
+
                 icon: "qrc:/images/home.png"
             }
 
@@ -51,6 +87,12 @@ Window {
                 anchors.top: button_one.bottom
                 anchors.topMargin: button_one.height/3
 
+                onClicked: {
+                    main_page.state = "hidden"
+                    schedule_layer.state = "visible"
+                    pills_layer.state = "hidden"
+                }
+
                 icon: "qrc:/images/calendar.png"
             }
 
@@ -63,6 +105,12 @@ Window {
                 anchors.horizontalCenter: parent.horizontalCenter
                 anchors.top: button_two.bottom
                 anchors.topMargin: button_two.height/3
+
+                onClicked: {
+                    main_page.state = "hidden"
+                    schedule_layer.state = "hidden"
+                    pills_layer.state = "visible"
+                }
 
                 icon: "qrc:/images/pills.png"
             }
@@ -115,7 +163,7 @@ Window {
                 height: parent.height/6
                 width: parent.width/1.2
 
-                color: "white"
+                color: "#00000000"
 
                 anchors.top: parent.top
                 anchors.horizontalCenter: parent.horizontalCenter
@@ -156,7 +204,7 @@ Window {
                 height: parent.height/1.4
                 width: parent.width/1.2
 
-                color: "white"
+                color: "#00000000"
 
                 anchors.top: top_box.bottom
                 anchors.horizontalCenter: parent.horizontalCenter

@@ -9,5 +9,7 @@
         <file>images/pills.png</file>
         <file>images/sign-out-alt.png</file>
         <file>images/wrench.png</file>
+        <file>layers/Pills.qml</file>
+        <file>layers/Schedule.qml</file>
     </qresource>
 </RCC>

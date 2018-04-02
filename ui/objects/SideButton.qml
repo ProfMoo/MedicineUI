@@ -12,6 +12,7 @@ Rectangle {
     property alias height_up: root.height
     property alias width_up: root.width
     property alias icon: btn_image.source
+    property alias text_up: btn_text.text
 
     color: "#00000000"
 
@@ -19,6 +20,8 @@ Rectangle {
         id: button
         height: parent.height
         width: parent.width
+        anchors.left: parent.left
+        anchors.top: parent.top
         anchors.topMargin: 0
         anchors.leftMargin: 0
 
@@ -31,8 +34,8 @@ Rectangle {
                     name: "pressed";
                     PropertyChanges {
                         target: button;
-                        anchors.topMargin: height/10
-                        anchors.leftMargin: height/10
+                        anchors.topMargin: height/20
+                        anchors.leftMargin: height/20
                     }
                 },
                 State {
@@ -51,6 +54,14 @@ Rectangle {
             anchors.margins: parent.height/5
 
             source: ''
+        }
+
+        Text {
+            id: btn_text
+            anchors.verticalCenter: parent.verticalCenter
+            anchors.horizontalCenter: parent.horizontalCenter
+            font.pointSize: 24
+            text: ""
         }
 
         MouseArea {
