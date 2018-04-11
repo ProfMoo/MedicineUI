@@ -1,5 +1,5 @@
 import QtQuick 2.3
-import QtGraphicalEffects 1.0
+//import QtGraphicalEffects 1.0
 
 Rectangle {
     id: root
@@ -24,6 +24,8 @@ Rectangle {
         anchors.top: parent.top
         anchors.topMargin: 0
         anchors.leftMargin: 0
+
+        z:2
 
         radius: height/2
         color: "#506AB4"
@@ -84,18 +86,19 @@ Rectangle {
         }
     }
 
-    DropShadow {
+    Rectangle {
         id: btn_shadow
         anchors.fill: button
-        horizontalOffset: parent.height/12
-        verticalOffset: parent.width/12
-
-        radius: 3.0
-        samples: 7
-        source: button
-        transparentBorder: true
-
-        color: "#80000000"
+        anchors.top: parent.top
+        anchors.left: parent.left
+        anchors.topMargin: parent.height/2
+        anchors.leftMargin: parent.width/2
+        height: parent.height
+        width: parent.width
+        color: "black"
+        opacity: 0.5
+        z: 1
+        radius: height/2
 
         state: "visible"
         states:[
@@ -104,7 +107,9 @@ Rectangle {
                 PropertyChanges {
                     target: btn_shadow;
                     visible: true;
-                    opacity: 1
+                    opacity: 0.5
+                    anchors.horizontalCenterOffset: parent.height/12
+                    anchors.verticalCenterOffset: parent.width/12
                 }
             },
             State {
@@ -113,6 +118,8 @@ Rectangle {
                     target: btn_shadow;
                     visible: false;
                     opacity: 0
+                    anchors.horizontalCenterOffset: 0
+                    anchors.verticalCenterOffset: 0
                 }
             }
         ]
