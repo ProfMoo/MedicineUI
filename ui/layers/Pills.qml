@@ -11,10 +11,13 @@ Rectangle {
     visible: true
     height: global_vars.height_main
     width: global_vars.width_main - global_vars.sidebar_width
+    objectName: "pills"
+
+    color: "#00000000"
 
     Component.onCompleted: {
-        //root.state = "hidden"
-        root.state = "visible"
+        root.state = "hidden"
+        //root.state = "visible"
     }
 
     states: [
@@ -39,13 +42,13 @@ Rectangle {
     Rectangle {
         id: main_page
         anchors.fill: parent
-        color: "blue"
+        color: "#00000000"
 
         SideButton {
             id: dispense_button
 
             height_up: 100
-            width_up: 100
+            width_up: 200
 
             anchors.horizontalCenter: parent.horizontalCenter
             anchors.verticalCenter: parent.verticalCenter

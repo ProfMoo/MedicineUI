@@ -18,8 +18,8 @@ Window {
 
     /* Making layers */
     //Pills{id: pills_layer; x:0; y:0}
-    Pills{id: pills_layer; x:global_vars.width_main - global_vars.sidebar_width; y:0}
-    Schedule{id: schedule_layer; x:global_vars.width_main - global_vars.sidebar_width; y:0}
+    Pills{id: pills_layer; x:global_vars.sidebar_width; y:0}
+    Schedule{id: schedule_layer; x:global_vars.sidebar_width; y:0}
 
     Component.onCompleted: {
         main_page.state = "visible"
@@ -29,7 +29,7 @@ Window {
     Rectangle {
         id: main_page
         anchors.fill: parent
-        //color: "white"
+        color: "#00000000"
 
         states: [
             State {
@@ -107,9 +107,11 @@ Window {
                 anchors.topMargin: button_two.height/3
 
                 onClicked: {
+                    //console.log("wtfff")
                     main_page.state = "hidden"
                     schedule_layer.state = "hidden"
                     pills_layer.state = "visible"
+                    //console.log("wtfff2")
                 }
 
                 icon: "qrc:/images/pills.png"
@@ -153,7 +155,7 @@ Window {
             height: parent.height
             width: parent.width - side_bar.width
 
-            color: "white"
+            color: "#00000000"
 
             anchors.right: parent.right
             anchors.top: parent.top

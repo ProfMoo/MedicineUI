@@ -29,23 +29,23 @@ Rectangle {
         color: "#506AB4"
 
         state: "released"
-            states:[
-                State {
-                    name: "pressed";
-                    PropertyChanges {
-                        target: button;
-                        anchors.topMargin: height/20
-                        anchors.leftMargin: height/20
-                    }
-                },
-                State {
-                    name: "released";
-                    PropertyChanges {
-                        target: button;
-                        anchors.topMargin: 0
-                        anchors.leftMargin: 0
-                    }
+        states:[
+            State {
+                name: "pressed";
+                PropertyChanges {
+                    target: button;
+                    anchors.topMargin: height/20
+                    anchors.leftMargin: height/20
                 }
+            },
+            State {
+                name: "released";
+                PropertyChanges {
+                    target: button;
+                    anchors.topMargin: 0
+                    anchors.leftMargin: 0
+                }
+            }
         ]
 
         Image {
@@ -60,7 +60,8 @@ Rectangle {
             id: btn_text
             anchors.verticalCenter: parent.verticalCenter
             anchors.horizontalCenter: parent.horizontalCenter
-            font.pointSize: 24
+            font.pointSize: parent.height/4
+            color: "white"
             text: ""
         }
 

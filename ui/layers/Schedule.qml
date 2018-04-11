@@ -12,6 +12,8 @@ Rectangle {
     height: global_vars.height_main
     width: global_vars.width_main - global_vars.sidebar_width
 
+    color: "#00000000"
+
     Component.onCompleted: {
         root.state = "hidden"
         //root.state = "visible"
@@ -39,7 +41,7 @@ Rectangle {
     Rectangle {
         id: main_page
         anchors.fill: parent
-        color: "red"
+        color: "#00000000"
     }
 }
 

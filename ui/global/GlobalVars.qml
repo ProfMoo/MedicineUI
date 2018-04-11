@@ -8,5 +8,5 @@ Item {
     property int width_main: 800
 
     /* Sidebar */
-    property int sidebar_width: height_main/4
+    property int sidebar_width: width_main/6
 }
