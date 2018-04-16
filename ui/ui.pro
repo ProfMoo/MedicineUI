@@ -13,3 +13,7 @@ QML_IMPORT_PATH =
 # Default rules for deployment.
 include(deployment.pri)
 
+target.path = /home/pi/
+INSTALLS += target
+
+QML_IMPORT_PATH += /usr/lib/arm-linux-gnueabihf/qt5/qml/QtGraphicalEffects

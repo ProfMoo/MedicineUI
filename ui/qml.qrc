@@ -11,5 +11,10 @@
         <file>images/wrench.png</file>
         <file>layers/Pills.qml</file>
         <file>layers/Schedule.qml</file>
+        <file>photos/webui0.png</file>
+        <file>ui</file>
+        <file>typefaces/TheBlacksmith.ttf</file>
+        <file>typefaces/saxmono.ttf</file>
+        <file>typefaces/chocolate.otf</file>
     </qresource>
 </RCC>

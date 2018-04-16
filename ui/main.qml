@@ -2,7 +2,8 @@ import QtQuick 2.3
 import QtQuick.Window 2.2
 import QtQml 2.2
 import QtQuick.Controls 1.4
-//import QtGraphicalEffects 1.0
+import QtGraphicalEffects 1.0
+import QtQuick.Dialogs 1.1
 import "qrc:/objects/"
 import "qrc:/global/"
 import "qrc:/layers/"
@@ -24,6 +25,18 @@ Window {
     Component.onCompleted: {
         main_page.state = "visible"
         //main_page.state = "hidden"
+    }
+
+    FontLoader {
+        id: main_font
+        name: "SaxMono"
+        source: "qrc:/typefaces/saxmono.ttf"
+    }
+
+    FontLoader {
+        id: top_font
+        name: "Chocolate"
+        source: "qrc:/typefaces/chocolate.otf"
     }
 
     Rectangle {
@@ -91,6 +104,7 @@ Window {
                     main_page.state = "hidden"
                     schedule_layer.state = "visible"
                     pills_layer.state = "hidden"
+                    Qt.quit()
                 }
 
                 icon: "qrc:/images/calendar.png"
@@ -134,6 +148,7 @@ Window {
                 anchors.top: parent.top
                 text: "2:08 PM"
                 font.pointSize: parent.width/7
+                font.family: "SaxMono"
                 smooth: true
                 color: "white"
             }
@@ -145,6 +160,7 @@ Window {
                 anchors.topMargin: parent.height/10
                 text: "Wed, Jan 3"
                 font.pointSize: parent.width/10
+                font.family: "SaxMono"
                 smooth: true
                 color: "white"
             }
@@ -160,6 +176,26 @@ Window {
             anchors.right: parent.right
             anchors.top: parent.top
 
+            SideButton {
+                id: add_button
+
+                height_up: 200
+                width_up: height
+
+                anchors.horizontalCenter: parent.horizontalCenter
+                anchors.top: parent.top
+                anchors.topMargin: parent.height/3
+
+                onClicked: {
+                    pill_model.insert(pill_listview.currentIndex + 1)
+                    pill_listview.currentIndex += 1
+                }
+
+                z: 2
+
+                icon: "qrc:/images/calendar.png"
+            }
+
             Rectangle {
                 id: top_box
                 height: parent.height/6
@@ -170,6 +206,8 @@ Window {
                 anchors.top: parent.top
                 anchors.horizontalCenter: parent.horizontalCenter
                 anchors.topMargin: height/3
+
+                z: 1
 
                 Text {
                     id: today
@@ -210,6 +248,39 @@ Window {
 
                 anchors.top: top_box.bottom
                 anchors.horizontalCenter: parent.horizontalCenter
+
+                ListModel {
+                    id: pill_model
+                    ListElement { color: "red" }
+                }
+
+                Component {
+                    id: pill_delegate
+                    Rectangle {
+                        height: 10
+                        width: 10
+                    }
+                }
+
+                ListView {
+                    id: pill_listview
+                    anchors.fill: parent
+                    delegate: pill_delegate
+                    model: pill_model
+                    spacing: parent.height/20
+                    clip: true
+
+//                    ScrollBar.vertical: ScrollBar {
+//                        active: true
+//                        interactive: true
+//                        orientation: Qt.Vertical
+//                        policy: ScrollBar.AsNeeded
+//                        parent: pill_listview.parent
+//                        anchors.top: parent.top
+//                        anchors.left: parent.right
+//                        anchors.leftMargin: 2
+//                    }
+                }
 
                 Rectangle {
                     id: med

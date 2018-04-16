@@ -1,5 +1,5 @@
 import QtQuick 2.3
-//import QtGraphicalEffects 1.0
+import QtGraphicalEffects 1.0
 
 Rectangle {
     id: root
@@ -64,6 +64,7 @@ Rectangle {
             anchors.horizontalCenter: parent.horizontalCenter
             font.pointSize: parent.height/4
             color: "white"
+            font.family: "Chocolate"
             text: ""
         }
 
@@ -86,42 +87,37 @@ Rectangle {
         }
     }
 
-    Rectangle {
-        id: btn_shadow
-        anchors.fill: button
-        anchors.top: parent.top
-        anchors.left: parent.left
-        anchors.topMargin: parent.height/2
-        anchors.leftMargin: parent.width/2
-        height: parent.height
-        width: parent.width
-        color: "black"
-        opacity: 0.5
-        z: 1
-        radius: height/2
+    DropShadow {
+         id: btn_shadow
+         anchors.fill: button
+         horizontalOffset: parent.height/12
+         verticalOffset: parent.width/12
 
-        state: "visible"
-        states:[
-            State {
-                name: "visible";
-                PropertyChanges {
-                    target: btn_shadow;
-                    visible: true;
-                    opacity: 0.5
-                    anchors.horizontalCenterOffset: parent.height/12
-                    anchors.verticalCenterOffset: parent.width/12
-                }
-            },
-            State {
-                name: "hidden";
-                PropertyChanges {
-                    target: btn_shadow;
-                    visible: false;
-                    opacity: 0
-                    anchors.horizontalCenterOffset: 0
-                    anchors.verticalCenterOffset: 0
-                }
-            }
-        ]
+         radius: 3.0
+         samples: 7
+         source: button
+         transparentBorder: true
+
+         color: "#80000000"
+
+         state: "visible"
+         states:[
+             State {
+                 name: "visible";
+                 PropertyChanges {
+                     target: btn_shadow;
+                     visible: true;
+                     opacity: 1
+                 }
+             },
+             State {
+                 name: "hidden";
+                 PropertyChanges {
+                     target: btn_shadow;
+                     visible: false;
+                     opacity: 0
+                 }
+             }
+         ]
     }
 }
