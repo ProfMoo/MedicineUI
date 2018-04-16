@@ -3,7 +3,7 @@ import QtQuick.Window 2.2
 import QtQml 2.2
 import QtQuick.Controls 1.4
 import QtGraphicalEffects 1.0
-import QtQuick.Dialogs 1.1
+//import QtQuick.Dialogs 1.1
 import "qrc:/objects/"
 import "qrc:/global/"
 import "qrc:/layers/"
@@ -179,21 +179,18 @@ Window {
             SideButton {
                 id: add_button
 
-                height_up: 200
+                height_up: 20
                 width_up: height
 
-                anchors.horizontalCenter: parent.horizontalCenter
-                anchors.top: parent.top
-                anchors.topMargin: parent.height/3
+                anchors.right: main_window.right
+                anchors.top: main_window.top
 
                 onClicked: {
-                    pill_model.insert(pill_listview.currentIndex + 1)
+                    pill_model.insert(pill_listview.currentIndex + 1, {"heightUp": today_page.height/5, "widthUp": bottom_box.width, "textUp": "Xanax", "textUp2": "9:00AM"})
                     pill_listview.currentIndex += 1
                 }
 
                 z: 2
-
-                icon: "qrc:/images/calendar.png"
             }
 
             Rectangle {
@@ -245,26 +242,30 @@ Window {
                 width: parent.width/1.2
 
                 color: "#00000000"
+                //color: "red"
 
                 anchors.top: top_box.bottom
                 anchors.horizontalCenter: parent.horizontalCenter
 
                 ListModel {
                     id: pill_model
-                    ListElement { color: "red" }
                 }
 
                 Component {
                     id: pill_delegate
-                    Rectangle {
-                        height: 10
-                        width: 10
+                    PillInfo {
+                        height2: heightUp
+                        width2: widthUp
+                        text2: textUp
+                        text3: textUp2
                     }
                 }
 
                 ListView {
                     id: pill_listview
                     anchors.fill: parent
+                    anchors.topMargin: today_page.height/15
+                    //anchors.rightMargin: today_page.width/4
                     delegate: pill_delegate
                     model: pill_model
                     spacing: parent.height/20
@@ -287,7 +288,7 @@ Window {
                     height: parent.height/4
                     width: parent.width
 
-                    color: "black"
+                    color: "#00000000"
 
                     anchors.top: parent.top
                     anchors.topMargin: parent.height/10
