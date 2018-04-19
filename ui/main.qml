@@ -281,17 +281,6 @@ Window {
                     model: pill_model
                     spacing: parent.height/20
                     clip: true
-
-//                    ScrollBar.vertical: ScrollBar {
-//                        active: true
-//                        interactive: true
-//                        orientation: Qt.Vertical
-//                        policy: ScrollBar.AsNeeded
-//                        parent: pill_listview.parent
-//                        anchors.top: parent.top
-//                        anchors.left: parent.right
-//                        anchors.leftMargin: 2
-//                    }
                 }
 
                 Rectangle {
