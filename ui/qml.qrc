@@ -18,5 +18,11 @@
         <file>typefaces/chocolate.otf</file>
         <file>objects/PillInfo.qml</file>
         <file>objects/DayTriangle.qml</file>
+        <file>images/arrow-left.svg</file>
+        <file>images/arrow-right.svg</file>
+        <file>images/arrow-left-gray.png</file>
+        <file>images/arrow-right-gray.png</file>
+        <file>images/square.svg</file>
+        <file>images/check-square.svg</file>
     </qresource>
 </RCC>

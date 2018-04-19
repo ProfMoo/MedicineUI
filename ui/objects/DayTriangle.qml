@@ -8,50 +8,32 @@ Rectangle {
     signal pressed()
     signal released()
     signal clicked()
+    property alias heightUp: root.height
+    property alias widthUp: root.width
+    property alias source: btn_image.source
 
     color: "#00000000"
+    //color: "red"
 
-    Rectangle {
-        id: info
-        height: parent.height
-        width: parent.width
+    Image {
+        id: btn_image
         anchors.fill: parent
+        //anchors.margins: parent.height/5
 
-        z:2
+        source: ''
+    }
 
-        radius: height/6
-        border.color: "black"
-        border.width: height/30
-        color: "#00000000"
-
-        state: "released"
-        states:[
-            State {
-                name: "pressed";
-                PropertyChanges {
-                    target: info;
-                }
-            },
-            State {
-                name: "released";
-                PropertyChanges {
-                    target: info;
-                }
-            }
-        ]
-
-        MouseArea {
-            id: pill_ma
-            anchors.fill: parent
-            onPressed: {
-                root.pressed()
-            }
-            onReleased: {
-                root.released()
-            }
-            onClicked: {
-                root.clicked()
-            }
+    MouseArea {
+        id: pill_ma
+        anchors.fill: parent
+        onPressed: {
+            root.pressed()
+        }
+        onReleased: {
+            root.released()
+        }
+        onClicked: {
+            root.clicked()
         }
     }
 }

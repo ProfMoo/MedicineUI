@@ -67,18 +67,30 @@ Rectangle {
             text: ""
         }
 
-        Rectangle {
+        Image {
             id: check_box
             anchors.verticalCenter: parent.verticalCenter
-            color: "#00000000"
-            width: parent.height/1.25
-            height: width
-            border.color: "black"
-            radius: height/6
-            border.width: parent.height/30
+            height: parent.height/1.25
+            width: height
             anchors.left: parent.left
             anchors.leftMargin: parent.height/8
+
+            source: "qrc:/images/check-square.svg"
+
         }
+
+//        Rectangle {
+//            id: check_box
+//            anchors.verticalCenter: parent.verticalCenter
+//            color: "#00000000"
+//            width: parent.height/1.25
+//            height: width
+//            border.color: "black"
+//            radius: height/6
+//            border.width: parent.height/30
+//            anchors.left: parent.left
+//            anchors.leftMargin: parent.height/8
+//        }
 
         MouseArea {
             id: pill_ma

@@ -104,7 +104,6 @@ Window {
                     main_page.state = "hidden"
                     schedule_layer.state = "visible"
                     pills_layer.state = "hidden"
-                    Qt.quit()
                 }
 
                 icon: "qrc:/images/calendar.png"
@@ -197,17 +196,32 @@ Window {
                 anchors.top: main_window.top
 
                 onClicked: {
-                    pill_model.insert(pill_listview.currentIndex + 1, {"heightUp": today_page.height/5, "widthUp": bottom_box.width, "textUp": "Xanax", "textUp2": "9:00AM"})
+                    pill_model.insert(pill_listview.currentIndex + 1, {"heightUp": today_page.height/5, "widthUp": bottom_box.width, "textUp": "Aspirin", "textUp2": "9:00AM"})
                     pill_listview.currentIndex += 1
                 }
 
                 z: 2
             }
 
+            SideButton {
+                id: exit_button
+
+                height_up: 20
+                width_up: height
+
+                anchors.left: add_button.right
+                anchors.leftMargin: 10
+                anchors.top: main_window.top
+
+                onClicked: {
+                    Qt.quit()
+                }
+            }
+
             Rectangle {
                 id: top_box
                 height: parent.height/6
-                width: parent.width/1.2
+                width: parent.width/1.08
 
                 color: "#00000000"
 
@@ -226,22 +240,46 @@ Window {
                     anchors.verticalCenter: parent.verticalCenter
                 }
 
-                Rectangle {
+                DayTriangle {
                     id: left_day
-                    height: parent.height
-                    width: height
+                    heightUp: parent.height
+                    widthUp: height
 
-                    color: "black"
+                    source: "qrc:/images/arrow-left.svg"
+                    onPressed: {
+                        source = "qrc:/images/arrow-left-gray.png"
+                    }
+                    onReleased: {
+                        source = "qrc:/images/arrow-left.svg"
+                        if (today.text == "Today") {
+                            today.text = "Yesterday"
+                        }
+                        else if (today.text == "Tomorrow") {
+                            today.text = "Today"
+                        }
+                    }
 
                     anchors.left: parent.left
                 }
 
-                Rectangle {
+                DayTriangle {
                     id: right_day
-                    height: parent.height
-                    width: height
+                    heightUp: parent.height
+                    widthUp: height
 
-                    color: "black"
+                    source: "qrc:/images/arrow-right.svg"
+                    onPressed: {
+                        source = "qrc:/images/arrow-right-gray.png"
+                    }
+                    onReleased: {
+                        source = "qrc:/images/arrow-right.svg"
+                        if (today.text == "Yesterday") {
+                            today.text = "Today"
+                        }
+                        else if (today.text == "Today") {
+                            today.text = "Tomorrow"
+                        }
+                    }
 
                     anchors.right: parent.right
                 }
@@ -250,7 +288,7 @@ Window {
             Rectangle {
                 id: bottom_box
                 height: parent.height/1.4
-                width: parent.width/1.2
+                width: parent.width/1.1
 
                 color: "#00000000"
                 //color: "red"
