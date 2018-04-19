@@ -9,4 +9,6 @@ Item {
 
     /* Sidebar */
     property int sidebar_width: width_main/6
+    property string time_date: ""
+    property string time_time: ""
 }

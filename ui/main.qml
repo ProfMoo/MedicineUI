@@ -142,12 +142,23 @@ Window {
             anchors.bottom: parent.bottom
             anchors.horizontalCenter: side_bar.horizontalCenter
 
+            Timer {
+                interval: 1000;
+                running: true;
+                repeat: true;
+                onTriggered: {
+                    var current_date = new Date();
+                    global_vars.time_date = (current_date.getMonth()+1) + "-" + current_date.getDate() + "-" + current_date.getFullYear();
+                    global_vars.time_time = current_date.getHours() + ":" + current_date.getMinutes() + ":" + current_date.getSeconds();
+                }
+            }
+
             Text {
                 id: time_text
                 anchors.horizontalCenter: parent.horizontalCenter
                 anchors.top: parent.top
-                text: "2:08 PM"
-                font.pointSize: parent.width/7
+                text: global_vars.time_date
+                font.pointSize: parent.width/8
                 font.family: "SaxMono"
                 smooth: true
                 color: "white"
@@ -158,8 +169,8 @@ Window {
                 anchors.horizontalCenter: parent.horizontalCenter
                 anchors.top: time_text.bottom
                 anchors.topMargin: parent.height/10
-                text: "Wed, Jan 3"
-                font.pointSize: parent.width/10
+                text: global_vars.time_time
+                font.pointSize: parent.width/8
                 font.family: "SaxMono"
                 smooth: true
                 color: "white"
