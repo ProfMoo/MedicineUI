@@ -3,7 +3,9 @@ TEMPLATE = app
 QT += qml quick
 CONFIG += c++11
 
-SOURCES += main.cpp
+SOURCES += main.cpp \
+    sockets.cpp \
+    fileio.cpp
 
 RESOURCES += qml.qrc
 
@@ -17,3 +19,7 @@ target.path = /home/pi/
 INSTALLS += target
 
 QML_IMPORT_PATH += /usr/lib/arm-linux-gnueabihf/qt5/qml/QtGraphicalEffects
+
+HEADERS += \
+    sockets.h \
+    fileio.h

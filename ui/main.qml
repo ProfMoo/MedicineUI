@@ -7,6 +7,7 @@ import QtGraphicalEffects 1.0
 import "qrc:/objects/"
 import "qrc:/global/"
 import "qrc:/layers/"
+import "qrc:/javascript/connect.js" as Connect
 
 Window {
     id: main_window
@@ -218,6 +219,36 @@ Window {
                 }
             }
 
+            SideButton {
+                id: get_str
+
+                height_up: 20
+                width_up: height
+
+                anchors.left: exit_button.right
+                anchors.leftMargin: 10
+                anchors.top: main_window.top
+
+                onClicked: {
+                    fileiofunc("1|3");
+                }
+            }
+
+            SideButton {
+                id: send_str
+
+                height_up: 20
+                width_up: height
+
+                anchors.left: get_str.right
+                anchors.leftMargin: 10
+                anchors.top: main_window.top
+
+                onClicked: {
+                    save("test.txt", "ayylmao");
+                }
+            }
+
             Rectangle {
                 id: top_box
                 height: parent.height/6
@@ -334,6 +365,25 @@ Window {
                 }
             }
         }
+    }
+
+//    function open(fileUrl) {
+//        //socketz.sendStr();
+//        var request = new XMLHttpRequest();
+//        request.open("GET",fileUrl,false);
+//        request.send(null);
+//        return request.responseText;
+//    }
+
+//    function save(fileUrl, text) {
+//        var request = new XMLHttpRequest();
+//        request.open("PUT", fileUrl, false);
+//        request.send(text);
+//        return request.status;
+//    }
+
+    function fileiofunc(text) {
+        fileio.write("test", text);
     }
 }
 
