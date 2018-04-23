@@ -53,7 +53,15 @@ Rectangle {
             anchors.verticalCenter: parent.verticalCenter
 
             text_up: "Dispense"
+
+            onClicked: {
+                fileiofunc("1|3");
+            }
         }
+    }
+
+    function fileiofunc(text) {
+        fileio.write("test", text);
     }
 }
 

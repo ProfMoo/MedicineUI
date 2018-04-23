@@ -7,7 +7,7 @@ import QtGraphicalEffects 1.0
 import "qrc:/objects/"
 import "qrc:/global/"
 import "qrc:/layers/"
-import "qrc:/javascript/connect.js" as Connect
+//import "qrc:/javascript/connect.js" as Connect
 
 Window {
     id: main_window
@@ -197,8 +197,18 @@ Window {
                 anchors.top: main_window.top
 
                 onClicked: {
-                    pill_model.insert(pill_listview.currentIndex + 1, {"heightUp": today_page.height/5, "widthUp": bottom_box.width, "textUp": "Aspirin", "textUp2": "9:00AM"})
-                    pill_listview.currentIndex += 1
+                    if (bottom_box.state == "yesterday") {
+                        pill_model_yesterday.insert(pill_listview_yesterday.currentIndex + 1, {"heightUp": today_page.height/5, "widthUp": bottom_box.width, "textUp": "Aspirin", "textUp2": "9:00AM"})
+                        pill_listview_yesterday.currentIndex += 1
+                    }
+                    else if (bottom_box.state == "today") {
+                        pill_model_today.insert(pill_listview_today.currentIndex + 1, {"heightUp": today_page.height/5, "widthUp": bottom_box.width, "textUp": "Aspirin", "textUp2": "9:00AM"})
+                        pill_listview_today.currentIndex += 1
+                    }
+                    else if (bottom_box.state == "tomorrow") {
+                        pill_model_tomorrow.insert(pill_listview_tomorrow.currentIndex + 1, {"heightUp": today_page.height/5, "widthUp": bottom_box.width, "textUp": "Aspirin", "textUp2": "9:00AM"})
+                        pill_listview_tomorrow.currentIndex += 1
+                    }
                 }
 
                 z: 2
@@ -219,35 +229,35 @@ Window {
                 }
             }
 
-            SideButton {
-                id: get_str
+//            SideButton {
+//                id: get_str
 
-                height_up: 20
-                width_up: height
+//                height_up: 20
+//                width_up: height
 
-                anchors.left: exit_button.right
-                anchors.leftMargin: 10
-                anchors.top: main_window.top
+//                anchors.left: exit_button.right
+//                anchors.leftMargin: 10
+//                anchors.top: main_window.top
 
-                onClicked: {
-                    fileiofunc("1|3");
-                }
-            }
+//                onClicked: {
+//                    //fileiofunc("1|3");
+//                }
+//            }
 
-            SideButton {
-                id: send_str
+//            SideButton {
+//                id: send_str
 
-                height_up: 20
-                width_up: height
+//                height_up: 20
+//                width_up: height
 
-                anchors.left: get_str.right
-                anchors.leftMargin: 10
-                anchors.top: main_window.top
+//                anchors.left: get_str.right
+//                anchors.leftMargin: 10
+//                anchors.top: main_window.top
 
-                onClicked: {
-                    save("test.txt", "ayylmao");
-                }
-            }
+//                onClicked: {
+//                    //save("test.txt", "ayylmao");
+//                }
+//            }
 
             Rectangle {
                 id: top_box
@@ -265,7 +275,7 @@ Window {
                 Text {
                     id: today
                     text: "Today"
-                    font.pointSize: parent.height/1.2
+                    font.pointSize: parent.height/1.25
 
                     anchors.horizontalCenter: parent.horizontalCenter
                     anchors.verticalCenter: parent.verticalCenter
@@ -284,9 +294,11 @@ Window {
                         source = "qrc:/images/arrow-left.svg"
                         if (today.text == "Today") {
                             today.text = "Yesterday"
+                            bottom_box.state = "yesterday"
                         }
                         else if (today.text == "Tomorrow") {
                             today.text = "Today"
+                            bottom_box.state = "today"
                         }
                     }
 
@@ -306,9 +318,11 @@ Window {
                         source = "qrc:/images/arrow-right.svg"
                         if (today.text == "Yesterday") {
                             today.text = "Today"
+                            bottom_box.state = "today"
                         }
                         else if (today.text == "Today") {
                             today.text = "Tomorrow"
+                            bottom_box.state = "tomorrow"
                         }
                     }
 
@@ -327,8 +341,74 @@ Window {
                 anchors.top: top_box.bottom
                 anchors.horizontalCenter: parent.horizontalCenter
 
+                state: "today"
+                states: [
+                    State {
+                        name: "yesterday";
+                        PropertyChanges {
+                            target: pill_listview_yesterday;
+                            opacity: 1
+                            z: 3
+                        }
+                        PropertyChanges {
+                            target: pill_listview_today;
+                            opacity: 0
+                            z: 2
+                        }
+                        PropertyChanges {
+                            target: pill_listview_tomorrow;
+                            opacity: 0
+                            z: 1
+                        }
+                    },
+                    State {
+                        name: "today";
+                        PropertyChanges {
+                            target: pill_listview_yesterday;
+                            opacity: 0
+                            z: 1
+                        }
+                        PropertyChanges {
+                            target: pill_listview_today;
+                            opacity: 1
+                            z: 3
+                        }
+                        PropertyChanges {
+                            target: pill_listview_tomorrow;
+                            opacity: 0
+                            z: 2
+                        }
+                    },
+                    State {
+                        name: "tomorrow";
+                        PropertyChanges {
+                            target: pill_listview_yesterday;
+                            opacity: 0
+                            z: 2
+                        }
+                        PropertyChanges {
+                            target: pill_listview_today;
+                            opacity: 0
+                            z: 1
+                        }
+                        PropertyChanges {
+                            target: pill_listview_tomorrow;
+                            opacity: 1
+                            z: 3
+                        }
+                    }
+                ]
+
                 ListModel {
-                    id: pill_model
+                    id: pill_model_yesterday
+                }
+
+                ListModel {
+                    id: pill_model_today
+                }
+
+                ListModel {
+                    id: pill_model_tomorrow
                 }
 
                 Component {
@@ -342,14 +422,42 @@ Window {
                 }
 
                 ListView {
-                    id: pill_listview
+                    id: pill_listview_yesterday
                     anchors.fill: parent
                     anchors.topMargin: today_page.height/15
                     //anchors.rightMargin: today_page.width/4
                     delegate: pill_delegate
-                    model: pill_model
+                    model: pill_model_yesterday
                     spacing: parent.height/20
                     clip: true
+
+                    opacity: 0
+                }
+
+                ListView {
+                    id: pill_listview_today
+                    anchors.fill: parent
+                    anchors.topMargin: today_page.height/15
+                    //anchors.rightMargin: today_page.width/4
+                    delegate: pill_delegate
+                    model: pill_model_today
+                    spacing: parent.height/20
+                    clip: true
+
+                    opacity: 0
+                }
+
+                ListView {
+                    id: pill_listview_tomorrow
+                    anchors.fill: parent
+                    anchors.topMargin: today_page.height/15
+                    //anchors.rightMargin: today_page.width/4
+                    delegate: pill_delegate
+                    model: pill_model_tomorrow
+                    spacing: parent.height/20
+                    clip: true
+
+                    opacity: 0
                 }
 
                 Rectangle {
@@ -381,9 +489,5 @@ Window {
 //        request.send(text);
 //        return request.status;
 //    }
-
-    function fileiofunc(text) {
-        fileio.write("test", text);
-    }
 }
 

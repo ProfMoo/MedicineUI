@@ -24,7 +24,5 @@
         <file>images/arrow-right-gray.png</file>
         <file>images/square.svg</file>
         <file>images/check-square.svg</file>
-        <file>javascript/connect.js</file>
-        <file>python/sockets.py</file>
     </qresource>
 </RCC>
