@@ -24,5 +24,6 @@
         <file>images/arrow-right-gray.png</file>
         <file>images/square.svg</file>
         <file>images/check-square.svg</file>
+        <file>layers/Today.qml</file>
     </qresource>
 </RCC>
