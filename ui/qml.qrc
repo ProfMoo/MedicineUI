@@ -1,0 +1,29 @@
+<RCC>
+    <qresource prefix="/">
+        <file>main.qml</file>
+        <file>main.cpp</file>
+        <file>objects/SideButton.qml</file>
+        <file>global/GlobalVars.qml</file>
+        <file>images/calendar.png</file>
+        <file>images/home.png</file>
+        <file>images/pills.png</file>
+        <file>images/sign-out-alt.png</file>
+        <file>images/wrench.png</file>
+        <file>layers/Pills.qml</file>
+        <file>layers/Schedule.qml</file>
+        <file>photos/webui0.png</file>
+        <file>ui</file>
+        <file>typefaces/TheBlacksmith.ttf</file>
+        <file>typefaces/saxmono.ttf</file>
+        <file>typefaces/chocolate.otf</file>
+        <file>objects/PillInfo.qml</file>
+        <file>objects/DayTriangle.qml</file>
+        <file>images/arrow-left.svg</file>
+        <file>images/arrow-right.svg</file>
+        <file>images/arrow-left-gray.png</file>
+        <file>images/arrow-right-gray.png</file>
+        <file>images/square.svg</file>
+        <file>images/check-square.svg</file>
+        <file>layers/Today.qml</file>
+    </qresource>
+</RCC>
